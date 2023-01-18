@@ -14,6 +14,7 @@ mock = [
     }
 ]
 
+
 def test_decorar_relatorio():
     simple_report = ColoredReport(SimpleReport).generate(mock)
 
