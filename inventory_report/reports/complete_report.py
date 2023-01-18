@@ -1,17 +1,21 @@
 from inventory_report.reports.simple_report import SimpleReport
-from collections import Counter
 
 
 class CompleteReport:
     @staticmethod
-    def generate(list):
+    def generate(list: list):
         simple_report = SimpleReport.generate(list)
 
-        products = Counter(item['nome_da_empresa'] for item in list)
+        products = {}
+        for product in list:
+            if product["nome_da_empresa"] in products:
+                products[product["nome_da_empresa"]] += 1
+            else:
+                products[product["nome_da_empresa"]] = 1
 
-        stock_products = ''
-        for company in products:
-            stock_products += f"{company}: {products[company]}\n"
+            stock_products = ''
+        for key, value in products.items():
+            stock_products += f"- {key}: {value}\n"
 
         return (
             f"{simple_report}\n"
