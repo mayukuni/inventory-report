@@ -21,4 +21,3 @@ def test_relatorio_produto():
     )
 
     assert str(product) == result
-
